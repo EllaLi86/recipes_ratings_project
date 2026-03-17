@@ -94,7 +94,7 @@ I examined the distributions of key variables individually to understand their r
 **Distribution of Average Rating**
 
 <iframe
-  src="assets/file-name.html"
+  src="assets/distribution_of_avg_rating.html"
   width="800"
   height="600"
   frameborder="0"
