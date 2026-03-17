@@ -93,7 +93,12 @@ I examined the distributions of key variables individually to understand their r
 
 **Distribution of Average Rating**
 
-[INSERT VISUALIZATION: histogram of average ratings]
+<iframe
+  src="assets/file-name.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 *Explain the distribution here—is it skewed? What's the typical rating? Are there many low-rated recipes?*
 
