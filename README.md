@@ -85,18 +85,16 @@ Here are all the columns of the cleaned df.
 | 'saturated fat  ' | float64 |
 | 'carbohydrates' | float64 |
 
-The `merged` dataframe contains **83,782 rows** and **20 columns**. Here are the first 5 rows. Since there are a lot of columns for the merged dataframe, I selected the columns that are more relevant to mys questions for display. Scroll right to view more columns.
+The `merged` dataframe contains **83,782 rows** and **20 columns**. Here are the first 5 rows. Since there are a lot of columns for the merged dataframe, I selected the columns that are more relevant to my questions for display. Scroll right to view more columns.
 
-### Sample Recipes (First 5 Rows)
 
-| name | id | minutes | contributor_id | submitted | tags | nutrition | n_steps | ingredients | n_ingredients | avg_rating | calories | total fat | sugar | sodium | protein | saturated fat | carbohydrates |
-|------|-----|---------|----------------|-----------|------|-----------|---------|-------------|---------------|------------|----------|-----------|-------|--------|---------|----------------|---------------|
-| 1 brownies in the world best ever | 333281 | 40 | 985201 | 2008-10-27 | 60-minutes-or-less, time-to-make, course, main-ingredient, preparation, for-large-groups, desserts, lunch, snacks, cookies-and-brownies, chocolate, bar-cookies, brownies, number-of-servings | [138.4, 10.0, 50.0, 3.0, 3.0, 19.0, 6.0] | 10 | bittersweet chocolate, unsalted butter, eggs, granulated sugar, unsweetened cocoa powder, vanilla extract, brewed espresso, kosher salt, all-purpose flour | 9 | 4.0 | 138.4 | 10 | 50 | 3 | 3 | 19 | 6 |
-| 1 in canada chocolate chip cookies | 453467 | 45 | 1848091 | 2011-04-11 | 60-minutes-or-less, time-to-make, cuisine, preparation, north-american, for-large-groups, canadian, british-columbian, number-of-servings | [595.1, 46.0, 211.0, 22.0, 13.0, 51.0, 26.0] | 12 | white sugar, brown sugar, salt, margarine, eggs, vanilla, water, all-purpose flour, whole wheat flour, baking soda, chocolate chips | 11 | 5.0 | 595.1 | 46 | 211 | 22 | 13 | 51 | 26 |
-| 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | 60-minutes-or-less, time-to-make, course, main-ingredient, preparation, side-dishes, vegetables, easy, beginner-cook, broccoli | [194.8, 20.0, 6.0, 32.0, 22.0, 36.0, 3.0] | 6 | frozen broccoli cuts, cream of chicken soup, sharp cheddar cheese, garlic powder, ground black pepper, salt, milk, soy sauce, french-fried onions | 9 | 5.0 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 |
-| millionaire pound cake | 286009 | 120 | 461724 | 2008-02-12 | time-to-make, course, cuisine, preparation, occasion, north-american, desserts, american, southern-united-states, dinner-party, holiday-event, cakes, dietary, christmas, thanksgiving, low-sodium, low-in-something, taste-mood, sweet, 4-hours-or-less | [878.3, 63.0, 326.0, 13.0, 20.0, 123.0, 39.0] | 7 | butter, sugar, eggs, all-purpose flour, whole milk, pure vanilla extract, almond extract | 7 | 5.0 | 878.3 | 63 | 326 | 13 | 20 | 123 | 39 |
-| 2000 meatloaf | 475785 | 90 | 2202916 | 2012-03-06 | time-to-make, course, main-ingredient, preparation, main-dish, potatoes, vegetables, 4-hours-or-less, meatloaf, simply-potatoes2 | [267.0, 30.0, 12.0, 12.0, 29.0, 48.0, 2.0] | 17 | meatloaf mixture, unsmoked bacon, goat cheese, unsalted butter, eggs, baby spinach, yellow onion, red bell pepper, simply potatoes shredded hash browns, fresh garlic, kosher salt, white pepper, olive oil | 13 | 5.0 | 267.0 | 30 | 12 | 12 | 29 | 48 | 2 |
-
+| name | id | minutes | contributor_id | submitted | n_steps | n_ingredients | avg_rating | calories | total fat | sugar | sodium | protein | saturated fat | carbohydrates |
+|------|-----|---------|----------------|-----------|---------|---------------|------------|----------|-----------|-------|--------|---------|----------------|---------------|
+| 1 brownies in the world best ever | 333281 | 40 | 985201 | 2008-10-27 | 10 | 9 | 4.0 | 138.4 | 10 | 50 | 3 | 3 | 19 | 6 |
+| 1 in canada chocolate chip cookies | 453467 | 45 | 1848091 | 2011-04-11 | 12 | 11 | 5.0 | 595.1 | 46 | 211 | 22 | 13 | 51 | 26 |
+| 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | 6 | 9 | 5.0 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 |
+| millionaire pound cake | 286009 | 120 | 461724 | 2008-02-12 | 7 | 7 | 5.0 | 878.3 | 63 | 326 | 13 | 20 | 123 | 39 |
+| 2000 meatloaf | 475785 | 90 | 2202916 | 2012-03-06 | 17 | 13 | 5.0 | 267.0 | 30 | 12 | 12 | 29 | 48 | 2 |
 
 
 ### Univariate Analysis
@@ -121,10 +119,12 @@ I examined the distributions of key variables individually to understand their r
 
 **Distribution of Calories**
 
-[INSERT VISUALIZATION: histogram of calorie counts]
-
-*Explain the distribution here—what's the calorie range for most recipes? Are there recipes with unusually high or low calories?*
-
+<iframe
+  src="assets/distribution_of_calories.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 ### Bivariate Analysis
 
 I explored relationships between pairs of variables to identify potential patterns and correlations.
