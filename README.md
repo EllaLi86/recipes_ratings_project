@@ -45,24 +45,20 @@ By seeking an answer to this question, we would gain insight into people's prefe
 To prepare the datasets for analysis, I performed several cleaning steps to ensure the data was properly formatted and ready for investigation.
 
 **1. Merge dataframes to add `avg_rating` column**
+I calculated the average rating for each recipe to understand overall recipe quality as perceived by users from `interactions` dataframe. Then, I merged two dataframes to combine recipe information with user ratings. 
 
-I calculated the average rating for each recipe to understand overall recipe quality as perceived by users from `interactions` dataframe. Then, I merged two dataframes to combine recipe information with user ratings. The `merged` dataframe contains **83,782 rows** and **13 columns**.
-
-**2: Replace rating 0.0 with NaN**
-
+**2. Replace rating 0.0 with NaN**
 Upon inspection, I noticed some `avg_rating` had a value of 0.0, which is likely invalid since ratings typically range from 1-5. I replaced these 0.0 values with NaN to exclude them from analysis.
 
-**3: Convert the nutrition column to list**
+**3. Convert the nutrition column to list**
+The `nutrition` column contained string representations of lists. I converted these strings to actual Python lists to access individual nutritional components.
 
-The nutrition column contained string representations of lists. I converted these strings to actual Python lists to access individual nutritional components.
-
-**4: Split values in the nutrition column to individual columns of floats**
-
+**4. Split values in the nutrition column to individual columns of floats**
 From the nutrition lists, I extracted each nutritional component and created separate columns for calories, total fat, sugar, sodium, protein, saturated fat, and carbohydrates. This allowed for more detailed analysis of how specific nutritional factors relate to ratings.
 
-**2: Check dataframe info and types**
+**5. Check dataframe info and types**
+Here are all the columns of the cleaned df. The `merged` dataframe contains **83,782 rows** and **20 columns**.
 
-Here are all the columns of the cleaned df.
 | Column | Type |
 |--------|-------------|
 | 'name' | object |
