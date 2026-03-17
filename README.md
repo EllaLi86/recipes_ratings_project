@@ -14,30 +14,30 @@ The first dataset, **raw_recipes**, contains **83,782 rows**, indicating 83,782 
 |--------|-------------|
 | 'name' | Recipe name |
 | 'id' | Recipe ID |
-| 'minutes' | Minutes to prepare recipe |
+| 'minutes' | Minutes to cook this recipe |
 | 'contributor_id' | User ID who submitted this recipe |
 | 'submitted' | Date recipe was submitted |
 | 'tags' | Food.com tags for recipe |
-| 'nutrition' | Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for "percentage of daily value" |
+| 'nutrition' | Nutrition information in the form [calories, total fat, sugar, sodium, protein, saturated fat, carbohydrates] |
 | 'n_steps' | Number of steps in recipe |
-| 'steps' | Text for recipe steps, in order |
+| 'steps' | Text for recipe steps in order |
 | 'description' | User-provided description |
 | 'ingredients' | Text for recipe ingredients |
 | 'n_ingredients' | Number of ingredients in recipe |
 
-The second dataset, **interactions**, contains **731,927 rows**, and each row contains a review from a user on a specific recipe. The columns it includes are:
+The second dataset, **interactions**, contains **731,927 rows** and **5 columns**, and each row contains a review from a user on a specific recipe. The columns it includes are:
 
 | Column | Description |
 |--------|-------------|
 | 'user_id' | User ID |
 | 'recipe_id' | Recipe ID |
 | 'date' | Date of interaction |
-| 'rating' | Rating given (scale likely 1-5) |
+| 'rating' | Rating given (scale 1-5) |
 | 'review' | Review text |
 
-Given the datasets, we are investigating whether there is a meaningful relationship between cooking time and how users rate recipes. To facilitate this investigation, we will analyze the **'minutes'** column from the recipes dataset to understand preparation time distributions and identify categories of recipes (quick, moderate, time-intensive). From the interactions dataset, we will use the **'rating'** column as our primary outcome variable, and we will calculate **'average_rating'** for each unique recipe to understand overall recipe quality as perceived by users. The most relevant columns to answer our question are **'minutes'** (preparation time), **'rating'** (individual user ratings), and **'average_rating'** (mean rating per recipe).
+Given the datasets, we are investigating whether there is a meaningful relationship between cooking time and how users rate recipes. To facilitate this investigation, we will analyze the **'minutes'** column from the recipes dataset to understand preparation&cooking time distributions. From the interactions dataset, we will use the **'rating'** column as our primary outcome variable, and we will calculate **'average_rating'** for each unique recipe to understand overall recipe quality as perceived by users. The most relevant columns to answer our question are **'minutes'** (preparation time), **'rating'** (individual user ratings), and **'average_rating'** (mean rating per recipe).
 
-By seeking an answer to our question, we would gain insight into people's preferences regarding cooking time, which could help contributors on Food.com tailor their recipes to match what users truly value—whether that's developing complex, time-intensive creations or streamlining their recipes for efficiency without sacrificing quality. In addition, these findings could lead to future work on recipe recommendation systems that better align with users' time constraints and preferences, potentially helping busy home cooks make more informed decisions about which recipes are worth their time.
+By seeking an answer to this question, we would gain insight into people's preferences regarding cooking time, which could help contributors on food.com tailor their recipes to match what users truly value—whether that's developing complex, time-intensive creations or streamlining their recipes for efficiency without sacrificing quality. In addition, these findings could lead to future work on recipe recommendation systems that better align with users' time constraints and preferences, potentially helping busy home cooks make more informed decisions about which recipes are worth their time.
 
 
 
