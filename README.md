@@ -150,7 +150,7 @@ The box plot reveals that the median cooking time is around 35 minutes, with the
 
 ---
 
-**Distribution of Calories**
+### Distribution of Calories
 
 <iframe
   src="assets/calories_histogram.html"
