@@ -42,28 +42,48 @@ By seeking an answer to this question, we would gain insight into people's prefe
 
 ## Data Cleaning and Exploratory Data Analysis
 
-To prepare the datasets for analysis, I performed several cleaning steps to ensure the data was properly formatted and ready for investigation.
 
-**1. Merge dataframes to add `avg_rating` column**
-I calculated the average rating for each recipe to understand overall recipe quality as perceived by users from `interactions` dataframe. Then, I merged two dataframes to combine recipe information with user ratings. 
+To prepare the datasets for investigating the relationship between cooking time and recipe ratings, I performed several cleaning steps to ensure the data was properly formatted and ready for analysis. These steps address issues arising from how the original data was collected and stored on Food.com.
+
+**1. Calculate average ratings and merge dataframes**
+
+The `interactions` dataset contains multiple ratings from different users for the same recipe, as users on Food.com can rate recipes they've tried. To understand overall recipe quality, I first calculated the average rating for each recipe using the `rating` column from the interactions data. I then merged this aggregated data with the main `recipes` dataframe on `recipe_id` (matched to `id`), creating a new `avg_rating` column. This merge combines recipe characteristics—most importantly cooking time (`minutes`)—with their collective user feedback, enabling analysis of how preparation time relates to recipe popularity.
 
 **2. Replace rating 0.0 with NaN**
-Upon inspection, I noticed some `avg_rating` had a value of 0.0, which is likely invalid since ratings typically range from 1-5. I replaced these 0.0 values with NaN to exclude them from analysis.
 
-**3. Convert the nutrition column to list**
-The `nutrition` column contained string representations of lists. I converted these strings to actual Python lists to access individual nutritional components.
+During inspection of the `avg_rating` column, I discovered values of 0.0. Food.com's rating system typically uses a 1-5 star scale, where 1 star is the lowest possible rating. A value of 0.0 likely represents missing data or recipes with no ratings rather than genuine user feedback. These zeros would artificially deflate average ratings and skew my analysis of how cooking time affects ratings. I replaced all 0.0 values with NaN to exclude them from calculations, ensuring that only recipes with actual user ratings contribute to my findings.
 
-**4. Split values in the nutrition column to individual columns of floats**
-From the nutrition lists, I extracted each nutritional component and created separate columns for calories, total fat, sugar, sodium, protein, saturated fat, and carbohydrates. This allowed for more detailed analysis of how specific nutritional factors relate to ratings.
+**3. Convert the nutrition column from string to list**
 
-**5. Convert `submitted` column datetime**
-The `submitted` column is stored as objects. I converted it into datetime to conduct the later analysis on trends over time if it is necessary.
+The `nutrition` column in the raw dataset was stored as a string representation of a list (e.g., `"[138.4, 10.0, 50.0, 3.0, 3.0, 19.0, 6.0]"`). This format likely resulted from how the data was exported for the research paper. While my primary focus is on cooking time, I extracted these nutritional components to use as potential confounding variables—for example, longer cooking times might correlate with higher calorie recipes, which could independently influence ratings.
 
-**6. Check final dataframe info and types**
-Here are all the columns of the cleaned df. 
+**4. Split nutrition list into individual columns**
+
+Once converted to lists, I extracted each nutritional component and created separate columns. Based on the dataset documentation, the nutrition list follows this order:
+- Position 0: calories (#)
+- Position 1: total fat (PDV)
+- Position 2: sugar (PDV)
+- Position 3: sodium (PDV)
+- Position 4: protein (PDV)
+- Position 5: saturated fat (PDV)
+- Position 6: carbohydrates (PDV)
+
+I created seven new float columns: `calories`, `total fat`, `sugar`, `sodium`, `protein`, `saturated fat`, and `carbohydrates`. These allow me to control for nutritional factors when examining the pure relationship between cooking time and ratings.
+
+**5. Convert `submitted` column to datetime**
+
+The `submitted` column, which records when each recipe was posted to Food.com, was initially stored as object/string type. I converted this column to datetime format using `pd.to_datetime()` to enable potential analysis of whether preferences for cooking time have shifted over the 2008-2018 timeframe—for instance, whether busy modern lifestyles have made users prefer quicker recipes in recent years.
+
+**6. Examine cooking time distribution and handle outliers**
+
+Since cooking time (`minutes`) is the central variable in my analysis, I examined its distribution. The column contains some extreme outliers (e.g., recipes claiming to take thousands of minutes) that likely represent data entry errors. For my main analysis, I will consider filtering to reasonable cooking times, but I preserved all values in the cleaned dataframe for transparency.
+
+**7. Verify final dataframe structure**
+
+After completing all cleaning steps, I examined the final dataframe to confirm successful transformations:
 
 | Column | Type |
-|--------|-------------|
+|--------|------|
 | 'name' | object |
 | 'id' | int64 |
 | 'minutes' | int64 |
@@ -81,12 +101,11 @@ Here are all the columns of the cleaned df.
 | 'total fat' | float64 |
 | 'sugar' | float64 |
 | 'sodium' | float64 |
-| 'protein ' | float64 |
-| 'saturated fat  ' | float64 |
+| 'protein' | float64 |
+| 'saturated fat' | float64 |
 | 'carbohydrates' | float64 |
 
-The `merged` dataframe contains **83,782 rows** and **20 columns**. Here are the first 5 rows. Since there are a lot of columns for the merged dataframe, I selected the columns that are more relevant to my questions for display. Scroll right to view more columns.
-
+The cleaned `merged` dataframe contains **83,782 rows** and **20 columns**. Below are the first 5 rows, highlighting the most relevant columns for my investigation of cooking time and recipe ratings. Scroll right to view all columns.
 
 | name | id | minutes | contributor_id | submitted | n_steps | n_ingredients | avg_rating | calories | total fat | sugar | sodium | protein | saturated fat | carbohydrates |
 |------|-----|---------|----------------|-----------|---------|---------------|------------|----------|-----------|-------|--------|---------|----------------|---------------|
@@ -95,7 +114,6 @@ The `merged` dataframe contains **83,782 rows** and **20 columns**. Here are the
 | 412 broccoli casserole | 306168 | 40 | 50969 | 2008-05-30 | 6 | 9 | 5.0 | 194.8 | 20 | 6 | 32 | 22 | 36 | 3 |
 | millionaire pound cake | 286009 | 120 | 461724 | 2008-02-12 | 7 | 7 | 5.0 | 878.3 | 63 | 326 | 13 | 20 | 123 | 39 |
 | 2000 meatloaf | 475785 | 90 | 2202916 | 2012-03-06 | 17 | 13 | 5.0 | 267.0 | 30 | 12 | 12 | 29 | 48 | 2 |
-
 
 ### Univariate Analysis
 
@@ -117,48 +135,50 @@ I examined the distributions of key variables individually to understand their r
 
 *Explain the distribution here—what's the typical cooking time? Are there outliers with extremely long preparation times? How might you handle these outliers?*
 
+
+### Univariate Analysis
+
+I examined the distributions of key variables individually to understand their ranges, central tendencies, and patterns.
+
+**Distribution of Average Rating**
+
+<iframe
+  src="assets/avg_rating_histogram.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The distribution of average ratings is heavily left-skewed, with the vast majority of recipes receiving ratings between 4.5 and 5 stars. This indicates that users tend to rate recipes positively overall, with 44,076 recipes falling in the highest rating bin, making it challenging to distinguish between truly exceptional recipes and merely good ones.
+
+**Distribution of Cooking Time**
+
+Since approximately 12.3% of recipes have cooking times exceeding 100 minutes (which could skew the visualization), I filtered to show only recipes with cooking times under 100 minutes for a clearer view of the typical preparation time range.
+
+<iframe
+  src="assets/cooking_time_boxplot.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The box plot reveals that the median cooking time is around 35 minutes, with the interquartile range (IQR) spanning from approximately 20 to 55 minutes. The presence of numerous outliers beyond the upper whisker indicates that while most recipes are relatively quick to prepare, there exists a substantial number of more time-intensive recipes that could appeal to users looking for weekend projects or special occasion meals.
+
 **Distribution of Calories**
 
 <iframe
-  src="assets/distribution_of_calories.html"
+  src="assets/calories_histogram.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
-### Bivariate Analysis
 
-I explored relationships between pairs of variables to identify potential patterns and correlations.
-
-**Relationship Between Calories and Average Rating**
-
-[INSERT VISUALIZATION: scatter plot or box plot showing calories vs average rating]
-
-*Describe what you observe—do higher calorie recipes tend to get higher ratings? Is there a threshold effect?*
-
-**Relationship Between Number of Ingredients and Average Rating**
-
-[INSERT VISUALIZATION: scatter plot or box plot showing n_ingredients vs average rating]
-
-*Describe what you observe—do simpler recipes with fewer ingredients rate better, or do more complex recipes with many ingredients earn higher scores?*
-
-**Relationship Between Sugar Content and Average Rating**
-
-[INSERT VISUALIZATION: scatter plot or box plot showing sugar content vs average rating]
-
-*Describe what you observe—is there a relationship between sugar and ratings? Do sugary recipes get penalized or rewarded by users?*
-
-**Pivot Table: Relationship Between Calories and Average Rating**
-
-<iframe
-  src="assets/calories_rating.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+The calorie distribution is right-skewed, with most recipes clustering in the lower to moderate calorie ranges. This suggests that the platform caters primarily to everyday cooking needs, though the long tail of higher-calorie recipes likely represents indulgent desserts and rich main courses that users prepare for special occasions.
 
 ### Interesting Aggregates: Percentage of Recipes by Calorie Group and Rating Category
 
 This pivot table displays the percentage distribution of ratings across different calorie groups. Each row represents a calorie range, and each column shows what proportion of recipes in that calorie range received ratings in each category. The percentages in each row sum to 100%.
+
 
 | calorie_group | Very Poor (0-2) | Poor (2-3) | Fair (3-3.5) | Good (3.5-4) | Very Good (4-4.5) | Excellent (4.5-5) |
 |---------------|-----------------|------------|--------------|--------------|-------------------|-------------------|
