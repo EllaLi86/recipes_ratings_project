@@ -120,7 +120,7 @@ The cleaned `merged` dataframe contains **83,782 rows** and **20 columns**. Belo
 
 I examined the distributions of key variables individually to understand their ranges, central tendencies, and patterns.
 
-### Distribution of Average Rating**
+#### Distribution of Average Rating
 The distribution of average ratings is heavily left-skewed, with the vast majority of recipes receiving ratings between 4.5 and 5 stars. This indicates that users tend to rate recipes positively overall, with 44,076 recipes falling in the highest rating bin, making it challenging to distinguish between truly exceptional recipes and merely good ones.
 
 <iframe
@@ -181,6 +181,7 @@ I believe that the 70 missingness of the **'description'** column is **NMAR** (N
 Now I examine the missingness of `avg_rating` in the merged DataFrame by testing the dependency of its missingness.
 
 **Cooking Time and Rating Missingness**
+
 I am investigating whether the missingness in the `rating` column depends on the column `minutes`, which is the cooking time of the recipe.
 
 **Null Hypothesis:** The missingness of ratings does not depend on the cooking time (minutes) of the recipe.
@@ -210,6 +211,7 @@ I am investigating whether the missingness in the `rating` column depends on the
 Since the p-value (0.041) is less than our significance level of 0.05, we **reject the null hypothesis**. This suggests that the missingness of ratings does depend on the cooking time of the recipe.
 
 **Protein and Rating Missingness**
+
 I also investigated whether the missingness of ratings depends on the protein content of recipes. 
 
 **Null Hypothesis:** The missingness of ratings does not depend on the protein amount of the recipe.
