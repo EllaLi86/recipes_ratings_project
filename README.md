@@ -131,7 +131,7 @@ The distribution of average ratings is heavily left-skewed, with the vast majori
 ></iframe>
 
 
-### Distribution of Cooking Time**
+#### Distribution of Cooking Time
 
 Since approximately 12.3% of recipes have cooking times exceeding 100 minutes (which could skew the visualization), I filtered to show only recipes with cooking times under 100 minutes for a clearer view of the typical preparation time range.
 
@@ -142,11 +142,9 @@ The box plot reveals that the median cooking time is around 35 minutes, with the
   width="800"
   height="600"
   frameborder="0"
-  marginheight="0"
-  marginwidth="0"
 ></iframe>
 
-### Distribution of Calories**
+#### Distribution of Calories
 
 The calorie distribution is right-skewed, with most recipes clustering in the lower to moderate calorie ranges. This suggests that the platform caters primarily to everyday cooking needs, though the long tail of higher-calorie recipes likely represents indulgent desserts and rich main courses that users prepare for special occasions.
 <iframe
@@ -154,11 +152,7 @@ The calorie distribution is right-skewed, with most recipes clustering in the lo
   width="800"
   height="600"
   frameborder="0"
-  marginheight="0"
-  marginwidth="0"
 ></iframe>
-
-
 
 ### Interesting Aggregates: Percentage of Recipes by Calorie Group and Rating Category
 
@@ -177,6 +171,46 @@ This pivot table displays the percentage distribution of ratings across differen
 
 
 ## Assessment of Missingness
+
+Three columns in the merged dataset have missing values: 'name', 'description', and 'avg_rating'. 
+
+### NMAR Analysis
+I believe that the 70 missingness of the **'description'** column is **NMAR** (Not Missing at Random). If people feel indifferent about a recipe, they are less likely to leave a review since they would feel they have nothing significant to say. People usually leave a review only when they have stronger emotions toward the recipe—whether positive or negative. Their emotions motivate them to navigate to the page, click through multiple buttons, and take time out of their day to write. For example, someone who thoroughly enjoyed a recipe would be willing to do all the work to leave a positive review, while someone who had a terrible experience might be motivated to warn others. Those with neutral experiences, however, have no such motivation, making their reviews systematically missing.
+
+### Missingness Dependency
+Now I examine the missingness of 'avg_rating' in the merged DataFrame by testing the dependency of its missingness. 
+
+I am investigating whether the missingness in the 'rating' column depends on the column 'minutes', which is the cooking time of the recipe.
+
+**Cooking Time and Rating Missingness**
+
+**Null Hypothesis:** The missingness of ratings does not depend on the cooking time (minutes) of the recipe.
+
+**Alternate Hypothesis:** The missingness of ratings does depend on the cooking time (minutes) of the recipe.
+
+**Test Statistic:** The absolute difference in mean cooking time between the group with missing ratings and the group without missing ratings.
+
+**Significance Level:** 0.05
+<iframe
+  src="assets/rating_missing_time_distribution.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+<iframe
+  src="assets/rating_missing_time_permutation.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+**Results:** 
+- Observed Difference: 117.34 minutes
+- P-value: 0.041
+
+Since the p-value (0.041) is less than our significance level of 0.05, we **reject the null hypothesis**. This suggests that the missingness of ratings does depend on the cooking time of the recipe.
 ## Hypothesis Testing
 ## Framing a Prediction Problem
 ## Baseline Model
