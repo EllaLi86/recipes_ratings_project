@@ -115,26 +115,6 @@ The cleaned `merged` dataframe contains **83,782 rows** and **20 columns**. Belo
 | millionaire pound cake | 286009 | 120 | 461724 | 2008-02-12 | 7 | 7 | 5.0 | 878.3 | 63 | 326 | 13 | 20 | 123 | 39 |
 | 2000 meatloaf | 475785 | 90 | 2202916 | 2012-03-06 | 17 | 13 | 5.0 | 267.0 | 30 | 12 | 12 | 29 | 48 | 2 |
 
-### Univariate Analysis
-
-I examined the distributions of key variables individually to understand their ranges, central tendencies, and patterns.
-
-**Distribution of Average Rating**
-
-<iframe
-  src="assets/distribution_of_avg_rating.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
-
-
-**Distribution of Cooking Time**
-
-[INSERT VISUALIZATION: histogram of cooking time in minutes]
-
-*Explain the distribution here—what's the typical cooking time? Are there outliers with extremely long preparation times? How might you handle these outliers?*
-
 
 ### Univariate Analysis
 
@@ -148,8 +128,8 @@ I examined the distributions of key variables individually to understand their r
   height="600"
   frameborder="0"
 ></iframe>
-
 The distribution of average ratings is heavily left-skewed, with the vast majority of recipes receiving ratings between 4.5 and 5 stars. This indicates that users tend to rate recipes positively overall, with 44,076 recipes falling in the highest rating bin, making it challenging to distinguish between truly exceptional recipes and merely good ones.
+
 
 **Distribution of Cooking Time**
 
@@ -161,8 +141,8 @@ Since approximately 12.3% of recipes have cooking times exceeding 100 minutes (w
   height="600"
   frameborder="0"
 ></iframe>
+The box plot reveals that the median cooking time is around 35 minutes, with the interquartile range (IQR) spanning from approximately 20 to 50 minutes. The presence of numerous outliers beyond the upper whisker indicates that while most recipes are relatively quick to prepare, there exists a substantial number of more time-intensive recipes that could appeal to users looking for weekend projects or special occasion meals.
 
-The box plot reveals that the median cooking time is around 35 minutes, with the interquartile range (IQR) spanning from approximately 20 to 55 minutes. The presence of numerous outliers beyond the upper whisker indicates that while most recipes are relatively quick to prepare, there exists a substantial number of more time-intensive recipes that could appeal to users looking for weekend projects or special occasion meals.
 
 **Distribution of Calories**
 
@@ -179,8 +159,7 @@ The calorie distribution is right-skewed, with most recipes clustering in the lo
 
 This pivot table displays the percentage distribution of ratings across different calorie groups. Each row represents a calorie range, and each column shows what proportion of recipes in that calorie range received ratings in each category. The percentages in each row sum to 100%.
 
-
-| calorie_group | Very Poor (0-2) | Poor (2-3) | Fair (3-3.5) | Good (3.5-4) | Very Good (4-4.5) | Excellent (4.5-5) |
+| Calorie Group | Very Poor (0-2) | Poor (2-3) | Fair (3-3.5) | Good (3.5-4) | Very Good (4-4.5) | Excellent (4.5-5) |
 |---------------|-----------------|------------|--------------|--------------|-------------------|-------------------|
 | <200 | 2.34% | 5.52% | 2.70% | 16.23% | 9.45% | 63.76% |
 | 200-400 | 2.26% | 5.67% | 2.65% | 17.03% | 9.98% | 62.41% |
