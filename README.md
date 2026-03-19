@@ -159,7 +159,7 @@ This histogram  below shows the frequency distribution of recipe cooking times. 
 ></iframe>
 Because approximately 6% of recipes have cooking times exceeding 200 minutes (which can skew visualization), I restricted this plot to recipes under 200 minutes to better capture typical cooking behavior.
 
-The box plot shows a median cooking time of about 35 minutes, with an interquartile range from roughly 20 to 50 minutes. This indicates that most recipes are relatively quick to prepare, though the presence of many high-end outliers suggests a meaningful subset of more time-intensive recipes.
+The box plot shows a median cooking time of about 35 minutes, with an interquartile range from roughly 20 to 58 minutes. This indicates that most recipes are relatively quick to prepare, though the presence of many high-end outliers suggests a meaningful subset of more time-intensive recipes.
 <iframe
   src="assets/cooking_time_boxplot.html"
   width="800"
@@ -167,11 +167,27 @@ The box plot shows a median cooking time of about 35 minutes, with an interquart
   frameborder="0"
 ></iframe>
 
+### Bivariate Analysis
+
+To directly address my research question—whether cooking time influences how users rate recipes—I examine the relationship between cooking time (`minutes`) and average recipe rating (`avg_rating`). By comparing groups of recipes with different preparation times, I can assess whether longer, potentially more complex recipes tend to receive higher ratings, or if quicker recipes perform just as well in terms of user satisfaction.
+
+#### Average Ratings: Quick vs. Regular Recipes
+
+This side-by-side box plot compares average ratings between quick recipes (cooking time ≤ 35 minutes) and regular recipes (cooking time > 35 minutes). Both groups have similar distribution, indicating that cooking time alone does not strongly differentiate recipe quality.
+<iframe
+  src="assets/minutes_vs_rating.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 ### Interesting Aggregates: Percentage of Recipes by Calorie Group and Rating Category
 
-This pivot table displays the percentage distribution of ratings across different calorie groups. Each row represents a calorie range, and each column shows what proportion of recipes in that calorie range received ratings in each category. The percentages in each row sum to 100%.
+### Interesting Aggregates: Percentage of Recipes by Calorie Group and Rating Category
 
-| Calorie Group | Very Poor (0-2) | Poor (2-3) | Fair  (3-3.5) | Good (3.5-4) | Very Good (4-4.5) | Excellent (4.5-5) |
+To further explore factors that may influence recipe ratings, I constructed a pivot table showing the percentage distribution of rating categories within each calorie group. Each row represents a calorie range, and each column indicates the proportion of recipes in that group that fall into a specific rating category. Percentages within each row sum to 100%.
+
+| Calorie Group | Very Poor (0-2) | Poor (2-3) | Fair (3-3.5) | Good (3.5-4) | Very Good (4-4.5) | Excellent (4.5-5) |
 |---------------|-----------------|------------|--------------|--------------|-------------------|-------------------|
 | <200 | 2.34% | 5.52% | 2.70% | 16.23% | 9.45% | 63.76% |
 | 200-400 | 2.26% | 5.67% | 2.65% | 17.03% | 9.98% | 62.41% |
@@ -181,8 +197,16 @@ This pivot table displays the percentage distribution of ratings across differen
 | 1000-1500 | 2.86% | 6.29% | 3.31% | 17.51% | 9.23% | 60.80% |
 | 1500-2000 | 3.27% | 6.42% | 3.87% | 18.52% | 8.47% | 59.44% |
 
+This table shows that across all calorie groups, the majority of recipes fall into the “Excellent” (4.5–5) category, reinforcing the earlier observation that ratings are generally high. While there is a slight trend where higher-calorie recipes have a marginally lower proportion of “Excellent” ratings and a slightly higher proportion of lower rating categories, these differences are relatively small.
 
+Overall, this suggests that calorie content does not strongly influence recipe ratings and is unlikely to be a major confounding variable in the relationship between cooking time and ratings.
 
+<iframe
+  src="assets/calories_vs_rating.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 ## Assessment of Missingness
 
 Three columns in the merged dataset have missing values: 'name', 'description', and 'avg_rating'. 
