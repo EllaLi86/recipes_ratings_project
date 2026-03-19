@@ -144,7 +144,7 @@ The distribution of average ratings is heavily left-skewed, with the vast majori
 <iframe
   src="assets/avg_rating_histogram.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 
@@ -154,7 +154,7 @@ This histogram  below shows the frequency distribution of recipe cooking times. 
 <iframe
   src="assets/cooking_time_distribution.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 Because approximately 6% of recipes have cooking times exceeding 200 minutes (which can skew visualization), I restricted this plot to recipes under 200 minutes to better capture typical cooking behavior.
@@ -163,7 +163,7 @@ The box plot shows a median cooking time of about 35 minutes, with an interquart
 <iframe
   src="assets/cooking_time_boxplot.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 
@@ -177,7 +177,7 @@ This side-by-side box plot compares average ratings between quick recipes (cooki
 <iframe
   src="assets/minutes_vs_rating.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 ### Interesting Aggregates: Percentage of Recipes by Calorie Group and Rating Category
@@ -201,7 +201,7 @@ Overall, this suggests that calorie content does not strongly influence recipe r
 <iframe
   src="assets/calories_vs_rating.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 ## Assessment of Missingness
@@ -230,7 +230,7 @@ I first investigate whether the missingness of `avg_rating` depends on cooking t
 <iframe
   src="assets/rating_missing_time_distribution.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 
@@ -238,7 +238,7 @@ I first investigate whether the missingness of `avg_rating` depends on cooking t
 <iframe
   src="assets/rating_missing_time_permutation.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 
@@ -262,13 +262,13 @@ Next, I test whether the missingness of `avg_rating` depends on protein content.
 <iframe
   src="assets/rating_missing_protein_distribution.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 <iframe
   src="assets/rating_missing_protein_permutation.html"
   width="800"
-  height="600"
+  height="520"
   frameborder="0"
 ></iframe>
 
@@ -302,7 +302,12 @@ This hypothesis test is well-suited for addressing the research question—wheth
 - **Significance Level:** α = 0.05  
 
 I performed a permutation test with 5000 simulations in order to generate an empirical distribution of the test statistic under the null hypothesis. The plot below shows the observed difference against the empirical distribution of differences from the permutation tests.
-<iframe src="assets/hypothesis_test.html" width="800" height="600" frameborder="0"></iframe>
+<iframe 
+src="assets/hypothesis_test.html" 
+width="800" 
+height="520" 
+frameborder="0" 
+></iframe>
 ### Conclusion
 - **Observed Difference:** 0.0782  
 - **P-value:** 0.0
@@ -339,12 +344,4 @@ Overall, this regression setup and the RMSE metric allow me to **leverage recipe
 ## Final Model
 ## Fairness Analysis
 
-
-## Cleaning and EDA
-
-<iframe src="assets/hypothesis_test.html" width=800 height=600 frameBorder=0></iframe>
-
----
-
-## Assessment of Missingness
 
