@@ -301,7 +301,7 @@ This hypothesis test is well-suited for addressing the research question—wheth
 
 - **Significance Level:** α = 0.05  
 
-I performed a permutation test with 5000 simulations in order to generate an empirical distribution of the test statisic under the null hypothesis. The plot below shows the observed difference against the empirical distribution of differences from the permutation tests.
+I performed a permutation test with 5000 simulations in order to generate an empirical distribution of the test statistic under the null hypothesis. The plot below shows the observed difference against the empirical distribution of differences from the permutation tests.
 
 <iframe
   src="assets/hypothesis_test.html"
@@ -312,7 +312,7 @@ I performed a permutation test with 5000 simulations in order to generate an emp
 
 ### Results
 - **Observed Difference:** 0.0782  
-- **P-value:** 0.0 
+- **P-value:** 0.0
 
 Since the p-value is less than 0.05, I **reject the null hypothesis**. This provides evidence that, in this dataset, quick recipes tend to have slightly higher average ratings than slow recipes.  
 
