@@ -177,7 +177,7 @@ This side-by-side box plot compares average ratings between quick recipes (cooki
 <iframe
   src="assets/minutes_vs_rating.html"
   width="800"
-  height="500"
+  height="450"
   frameborder="0"
 ></iframe>
 ### Interesting Aggregates: Percentage of Recipes by Calorie Group and Rating Category
@@ -230,7 +230,7 @@ I first investigate whether the missingness of `avg_rating` depends on cooking t
 <iframe
   src="assets/rating_missing_time_distribution.html"
   width="800"
-  height="500"
+  height="450"
   frameborder="0"
 ></iframe>
 
@@ -262,7 +262,7 @@ Next, I test whether the missingness of `avg_rating` depends on protein content.
 <iframe
   src="assets/rating_missing_protein_distribution.html"
   width="800"
-  height="500"
+  height="450"
   frameborder="0"
 ></iframe>
 <iframe
@@ -305,7 +305,7 @@ I performed a permutation test with 5000 simulations in order to generate an emp
 <iframe 
 src="assets/hypothesis_test.html" 
 width="800" 
-height="500" 
+height="400" 
 frameborder="0" 
 ></iframe>
 ### Conclusion
