@@ -410,7 +410,7 @@ All features were standardized using `StandardScaler` to ensure consistent scali
 - Training set: 75%  
 - Test set: 25%  
 
-Only recipes with cooking times between 0 and 90 minutes were included, excluding extreme outliers that could represent errors or unusual recipes. This results in **keeping X recipes**, which is roughly Y% of the dataset.
+Only recipes with cooking times between 0 and 90 minutes were included, excluding extreme outliers that could represent errors or unusual recipes. This results in **keeping 72537 recipes**, which is roughly 86.6% of the dataset.
 
 ### Model and Hyperparameters
 I used a **Random Forest Regressor** with the following hyperparameters :
