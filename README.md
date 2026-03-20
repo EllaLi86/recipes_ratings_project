@@ -471,10 +471,10 @@ To evaluate whether the final cooking time prediction model is fair, I compared 
 
 | Group | Number of Samples | RMSE (minutes) |
 |-------|-----------------|----------------|
-| Quick recipes (≤60 min) | 15,701 | 14.31 |
-| Slow recipes (>60 min) | 2,434 | 34.13 |
+| Quick recipes (≤60 min) | 15630 | 14.21 |
+| Slow recipes (>60 min) | 2505 | 34.55 |
 
-- **Observed Difference (Quick - Slow):** -19.83 minutes  
+- **Observed Difference (Quick - Slow):** -20.34 minutes  
 - **P-value:** 0.0000  
 
 Since the p-value is less than 0.05, we **reject the null hypothesis**. This provides strong evidence that the model predicts cooking time for slow recipes significantly less accurately than for quick recipes.
